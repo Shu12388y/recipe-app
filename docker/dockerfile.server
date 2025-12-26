@@ -1,0 +1,20 @@
+# Base image
+FROM alphine:go 
+
+# Working dir
+WORKDIR /app 
+
+# Copy the file
+COPY ./apps/server .
+
+# Install the dependencies
+RUN go install
+
+# Build the code 
+RUN go build -o ./.build/main ./cmd/main.go
+
+# Expose PORT
+EXPOSE 3000
+
+# RUN the code
+CMD [ "./.build/main" ]
