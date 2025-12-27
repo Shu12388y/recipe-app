@@ -38,6 +38,7 @@ export class AuthController {
         c.status(402);
         return c.json({ message: "Email and password is required" });
       }
+      await connectDB(c.env.DBURI)
       await new AuthService(email, password).createNewUser();
       c.status(201);
       return c.json({
