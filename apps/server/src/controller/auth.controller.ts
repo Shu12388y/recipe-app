@@ -38,11 +38,10 @@ export class AuthController {
         c.status(402);
         return c.json({ message: "Email and password is required" });
       }
-      const info = await new AuthService(email, password).createNewUser();
+      await new AuthService(email, password).createNewUser();
       c.status(201);
       return c.json({
-        message: "success",
-        data: info,
+        message: "success"
       });
     } catch (error) {
       c.status(500);
